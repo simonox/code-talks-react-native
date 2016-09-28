@@ -20,14 +20,14 @@
 					<span style={{display: 'table-cell'}}><img src={this.props.item.posters.thumbnail} width="80px" /></span>
 					<span style={{display: 'table-cell'}}>{this.props.item.title}</span>
 					<span style={{display: 'table-cell'}}>{this.props.item.year}</span>
-			</div>
+			    </div>
 		);
 		}
 	});
 
 
 	var MovieList = React.createClass({
-		REQUEST_URL: 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json',
+		REQUEST_URL: 'MoviesExample.json',
 		render() {
 			return (
 				<div style={{display: 'table', width: '100%'}}>
@@ -59,15 +59,7 @@
 
 
 	ReactDOM.render(
-	<div style={{display: 'table', width: '100%'}}>
-		<Movie item={{
-			title: "Hello EnterJS",
-				year: "2016",
-				posters: {
-			thumbnail: "https://www.enterjs.de/images/logo.svg"
-			}}
-		}></Movie>
-	</div>, document.getElementById('app')
+	<MovieList></MovieList>, document.getElementById('app')
 	);
 </script>
 </body>

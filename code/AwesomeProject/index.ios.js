@@ -1,26 +1,27 @@
-import NavigationBar from 'react-native-navbar'
 /**
  * Sample React Native App for Demonstration
  */
-
-import React, {
-	AppRegistry,
-	Component,
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	ListView,
-	TouchableHighlight,
-	Navigator,
-	NavMenu,
+import React, {Component, } from 'react';
+import {
+  View,
+  AppRegistry,
+  StyleSheet,
+  Text,
+  Image,
+  ListView,
+  TouchableHighlight,
+  Navigator,
+  NavMenu,
+  BackAndroid,
+  Platform,
 } from 'react-native'
+import NavigationBar from 'react-native-navigationbar'
 
 class AwesomeProject extends Component {
 
 	render() {
 		var navigator;
-		React.BackAndroid.addEventListener('hardwareBackPress', () => {
+		BackAndroid.addEventListener('hardwareBackPress', () => {
 			if (navigator && navigator.getCurrentRoutes().length > 1) {
 				navigator.pop();
 				return true;
@@ -42,13 +43,12 @@ class AwesomeProject extends Component {
 			case 'MovieDetails':
 			{
 				var navbar;
-				if (React.Platform.OS === 'ios') {
+				if (Platform.OS === 'ios') {
 					navbar = <NavigationBar
-						title={{ title: 'Detail', tintColor: 'black', }}
-						leftButton={{ title: 'Back', handler: () => navigator.pop(),}}
-						style={{ backgroundColor: "white", }}
-						statusBar={{ tintColor: "white", }}
-					/>
+						title='Detail'
+            actionArray={[{title: 'List', onPress: () => navigator.pop()}]}
+            backFunc={navigator.pop}
+          />
 				}
 				return (
 					<View>
@@ -95,7 +95,7 @@ var Movie = React.createClass({
 					<Text style={styles.info}>Rating: {this.props.movie.mpaa_rating}</Text>
 					<Image
 						style={styles.poster}
-						source={{uri: this.props.movie.posters.thumbnail}}
+						source={{uri: this.props.movie.posters.thumbnail.replace('http://', 'https://')}}
 					/>
 					<Text style={styles.year}>Actors:</Text>
 					{this.props.movie.abridged_cast.map((actor) => {
@@ -111,7 +111,7 @@ var Movie = React.createClass({
 
 var MoviesList = React.createClass({
 
-	REQUEST_URL: 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json',
+	REQUEST_URL: 'https://information-architects.herokuapp.com/MoviesExample.json',
 
 	getInitialState() {
 		return ( {
@@ -169,7 +169,7 @@ var MoviesList = React.createClass({
 			<TouchableHighlight onPress={() => this.selectMovie(movie)} underlayColor='blue'>
 				<View style={styles.container}>
 					<Image
-						source={{uri: movie.posters.thumbnail}}
+						source={{uri: movie.posters.thumbnail.replace('http://', 'https://')}}
 						style={styles.thumbnail}
 					/>
 					<View style={styles.rightContainer}>
@@ -230,8 +230,8 @@ const styles = StyleSheet.create({
 		padding: 2,
 	},
 	poster: {
-		width: 150,
-		height: 243,
+		width: 175,
+		height: 175,
 		borderRadius: 12,
 	},
 	listView: {
