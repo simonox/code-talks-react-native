@@ -21,13 +21,12 @@
 					<span style={{display: 'table-cell'}}>{this.props.item.title}</span>
 					<span style={{display: 'table-cell'}}>{this.props.item.year}</span>
 			    </div>
-		);
+		    );
 		}
 	});
 
 
 	var MovieList = React.createClass({
-		REQUEST_URL: 'MoviesExample.json',
 		render() {
 			return (
 				<div style={{display: 'table', width: '100%'}}>
@@ -43,13 +42,13 @@
 			}
 		},
 		fetchData() {
-			fetch(this.REQUEST_URL)
-					.then((response) => response.json())
-					.then((data) => {
-						this.setState({
-							movies : data.movies
-						})
-					});
+			fetch('MoviesExample.json')
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({
+                    movies : data.movies
+                })
+            });
 		},
 		componentDidMount : function(){
 			this.fetchData();
@@ -59,7 +58,7 @@
 
 
 	ReactDOM.render(
-	<MovieList></MovieList>, document.getElementById('app')
+	    <MovieList></MovieList>, document.getElementById('app')
 	);
 </script>
 </body>

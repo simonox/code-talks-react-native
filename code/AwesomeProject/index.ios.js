@@ -18,7 +18,6 @@ import {
 import NavigationBar from 'react-native-navigationbar'
 
 class AwesomeProject extends Component {
-
 	render() {
 		var navigator;
 		BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -80,10 +79,16 @@ class AwesomeProject extends Component {
 	}
 
 	componentWillMount() {
-		// React.Platform.OS
+		console.log(Platform.OS);
 	}
 
 };
+
+
+
+
+
+
 
 var Movie = React.createClass({
 	render() {
@@ -108,6 +113,11 @@ var Movie = React.createClass({
 		);
 	}
 });
+
+
+
+
+
 
 var MoviesList = React.createClass({
 

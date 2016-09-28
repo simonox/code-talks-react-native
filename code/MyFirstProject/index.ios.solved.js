@@ -13,34 +13,61 @@ import {
 	Image
 } from 'react-native';
 
+var Movie = React.createClass({
+	render() {
+		return(
+			<View style={styles.container}>
+				<View style={styles.imageContainer}>
+					<Image
+						style={styles.poster}
+						source={{uri: this.props.item.posters.thumbnail}}
+					/>
+				</View>
+				<View style={styles.infoContainer}>
+					<Text style={styles.title}>{this.props.item.title}</Text>
+					<Text style={styles.info}>{this.props.item.year}</Text>
+				</View>
+			</View>
+		);
+	}
+});
+
 class MyFirstProject extends Component {
 	render() {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.welcome}>
-					Welcome to React Native!
-				</Text>
-				<Text style={styles.instructions}>
-					To get started, edit index.ios.js
-				</Text>
-				<Text style={styles.instructions}>
-					Press Cmd+R to reload,{'\n'}
-					Cmd+D or shake for dev menu
-				</Text>
-			</View>
+			<Movie item={{
+                   title: "Hello CodeTalks",
+                   year: "2016",
+                   posters: {
+                     thumbnail: "https://developer.aboutyou.de/blog/wp-content/uploads/2014/10/code.talks13.jpg"
+                   }
+    }}></Movie>
 		);
 	}
 }
 
 
+
+
+
+
+
+
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: 'column',
-		paddingTop: 200,
+		flexDirection: 'row',
+		padding: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#F5FCFF',
+	},
+	infoContainer: {
+		flex: 1,
+		flexDirection: 'column'
+	},
+	imageContainer: {
 	},
 	welcome: {
 		fontSize: 20,
@@ -51,12 +78,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		color: '#333333',
 		marginBottom: 5,
-	},
-	infoContainer: {
-		flex: 1,
-		flexDirection: 'column'
-	},
-	imageContainer: {
 	},
 	title: {
 		fontSize: 20,
@@ -82,8 +103,8 @@ const styles = StyleSheet.create({
 		padding: 2,
 	},
 	poster: {
-		width: 150,
-		height: 243,
+		width: 175,
+		height: 175,
 		borderRadius: 12,
 	},
 	listView: {
